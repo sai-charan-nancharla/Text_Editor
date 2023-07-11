@@ -1,0 +1,163 @@
+To create React App in a folder just goto that folder And perform this:
+
+	(Shift + Right click) -> (Windows Power Shell) -> (npx create-reacct-app app)
+
+-> div.row : creates a row div
+-> div.col-md-3 : creates a coloumn with spacing 3
+
+-> Constructor is used to assign instance variables
+
+		constructor(){
+			super();
+			console.log("News Constructor");
+			
+		}
+
+->	State is used in constructor to  create local variables.
+
+		this.state={
+				articles:this.articles,
+				loading:false
+				}
+
+-> componentDidMount(){} : It is a component life cycle method that executes after the render method.
+
+-> fetch() : This method is used to fetch apis,etc.. and returns some promise
+
+				async makes a function return a Promise
+
+				await makes a function wait for a Promise
+
+->async : This function waits inside the body until some promises are resolved inside the body.
+
+
+->await : The keyword await makes JavaScript wait until that promise settles and returns its result.
+		  await literally suspends the function execution until the promise settles, and then resumes 
+		  it with the promise result. That doesn’t cost any CPU resources, because the JavaScript 
+		  engine can do other jobs in the meantime: execute other scripts, handle events, etc.
+
+ -> {this.state.loading && <spinner/>} ----Which means if loading variable is true then spinner component
+                                           is rendered else no.This is the syntax..
+
+-> switch is replaced with Routes in new version of 'react-router-dom'.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+⨷ React Component Lifecycle
+-----------------------------------------------------------------------------------------------------------------------------
+
+• The series of events that happen from the mounting of a React component to its Unmounting.
+
+	-Mounting - Birth of your component
+
+	-Update - Growth of your component
+
+	-Unmount - Death of your component
+
+
+-> Methods in React Component Lifecycle
+
+	• The render() method is used to render HTML of the component in react. This method is required for a class based component 
+	  to render the DOM. It runs during the mounting and updating of your component. Render() method should be pure ie you cannot 
+	  modify state inside it!
+
+	• The componentDidUpdate() method runs after the component output has been rendered to the DOM.
+
+	• The componentDidUpdate() method is invoked as soon as the updating happens. The most common use case for the componentDidUpdate()
+	  method is updating the DOM in response to prop or state changes.
+
+	• The componentWill Unmount() lifecycle method is called just before the component is unmounted and destroyed. Usually used to perform cleanups
+
+
+-> Diagram :  https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+-> React Infinite scroll --- npm i react-infinite-scroll
+
+			import InfiniteScroll from 'react-infinite-scroll';
+
+						 <InfiniteScroll
+							dataLength={this.state.articles.length}
+							next={this.fetchMoreData}
+							hasMore={this.state.articles.length !== this.state.totalResults}
+							loader={<Spinner/>}
+							>
+						 </InfiniteScroll>
+
+-> React Top loading bar --- npm i react-top-loading-bar
+
+	⨀ This can be used along with the "ref" and "state"
+
+			import LoadingBar from 'react-top-loading-bar';
+
+							<LoadingBar
+								color='red'
+								shadow='true'
+								height={3}
+								background='black'
+								progress={this.state.progress}
+							/>
+	
+	There are many inbulit properties for LoadingBar.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+⨀ Environment Variables :
+
+-> We can hide variables in our code by defining them in local Environment file starting with REACT_APP_.
+
+-> defined as  '.env.local'
+
+		define and intialize variable easily 
+
+		REACT_APP_APIKey="hbadsayudandand1wgqwqdw78ui"
+
+-> Access them in App components or App.js with 'process.env.variable_name'
+
+		Ex: APIKey=process.env.REACT_APP_APIKey
+
+->By default you will have NODE_ENV defined for you, and any other environment 
+  variables starting with REACT_APP_.
+
+->There is also a built-in environment variable called NODE_ENV. You can read it from process.env.NODE_ENV. 
+  When you run npm start, it is always equal to 'development', when you run npm test it is always equal to 
+  'test', and when you run npm run build to make a production bundle, it is always equal to 'production'. 
+  You cannot override NODE_ENV manually. This prevents developers from accidentally deploying a slow 
+  development build to production.
+
+-⩥ Referencing Environment Variables in the HTML :
+
+	->You can also access the environment variables starting with REACT_APP_ in the public/index.html. For example:
+
+	<title>%REACT_APP_WEBSITE_NAME%</title>
+
+	Note that the caveats from the above section apply:
+
+	->Apart from a few built-in variables (NODE_ENV and PUBLIC_URL), variable names must start with REACT_APP_ to work.
+	->The environment variables are injected at build time. If you need to inject them at runtime, 
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+
+⨀ React Hooks :
+-----------------------------------------------------------------------------------------------------------------------------
+
+-> These are features of class based components in function based components.
+-> It allows us to use state and other react features without writing a class.
+-> Hooks are the functions that "hooks into" React state and lifecycle features from function component.
+
+Commonly used React Hooks :
+
+		1.useState   : This can be used for updating state.
+		2.useEffect  : This can be used in presence of componentDidMount,componentDidUpdate
+		3.useContext : Any state or function inside the context makes it available global.This very helpful
+					   in cases of propdrill(i.e sending the props from app.js to some component inside the component tree)
+		4.useRef	 : It returns a mutable reference object. It contains ".current" property with the help of this property
+					   we can point to any element in the DOM(Document object Model).
